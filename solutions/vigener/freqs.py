@@ -1,6 +1,7 @@
 from __future__ import division
 from collections import Counter
 
+# standard english letter frequency distribution from wikipedia
 en = {
     "a":  0.08167,
     "b":  0.01492,
@@ -39,6 +40,7 @@ def get_freqs(text):
     return freqs
     
 def score_freq(dist):
+    # find the average relative error between the expected freq and observed freq
     err = 0
     for let in dist:
         err += abs(en[let] - dist[let]) / en[let]
