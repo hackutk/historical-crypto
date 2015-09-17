@@ -1,9 +1,8 @@
-# rxorbreak.py
+# solve.py
 #
 # By Joseph Connor
 #
-# This script reads a hex-encoded repeating-XOR ciphertext on stdin
-# and attempts to find the plaintext with basic frequency analysis
+# This script solves a Vigenere cipher using frequency analysis
 
 from __future__ import division
 from string import ascii_uppercase
@@ -18,6 +17,7 @@ def enchunk(l, n):
     for i in xrange(0, len(l), n):
         chunks.append(l[i:i+n])
     return chunks
+
 
 def rot(msg, n):
     lets = 'abcdefghijklmnopqrstuvwxyz'
@@ -41,7 +41,6 @@ def vigenere_dec(msg, key):
     for c, ki in zip(msg, k):
         ct += rot(c, -ki)
     return ct
-    
 
 
 def try_keylen(keylen, ciphertext):
@@ -67,6 +66,7 @@ def try_keylen(keylen, ciphertext):
         key += chr(ord('A') + best_k)
 
     return key 
+
 
 with open('cipher.txt') as f:
     ciphertext = ''.join(c for c in f.read().upper() if c in ascii_uppercase)
